@@ -1,0 +1,5 @@
+build-kyria:
+  qmk compile -kb splitkb/kyria/rev3 -km ReidMason
+
+flash-kyria:
+  qmk flash -kb splitkb/kyria/rev3 -km ReidMason
