@@ -49,8 +49,6 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 #endif
 
 // Aliases for readability
-#define QWERTY   DF(_QWERTY)
-
 #define SYM      MO(_SYM)
 #define NAV      MO(_NAV)
 #define FKEYS    MO(_FUNCTION)
@@ -61,6 +59,15 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 #define CTL_MINS MT(MOD_RCTL, KC_MINUS)
 #define ALT_ENT  MT(MOD_LALT, KC_ENT)
 
+// Home row mods
+#define SFT_F LSFT_T(KC_F)
+#define SFT_J RSFT_T(KC_J)
+#define GUI_D LGUI_T(KC_D)
+#define GUI_K RGUI_T(KC_K)
+#define CTL_S LCTL_T(KC_S)
+#define CTL_L LCTL_T(KC_L)
+#define ALT_A LALT_T(KC_A)
+#define ALT_SCLN LALT_T(KC_SCLN)
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
@@ -82,10 +89,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
-     KC_ESC  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P ,   KC_BSPC,
-     CTL_TAB , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,  KC_SCLN, KC_QUOTE,
-     KC_LSFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , _______,_______,     FKEYS  , _______, KC_N,   KC_M ,  KC_COMM, KC_DOT ,KC_SLSH, KC_RSFT,
-                                ADJUST ,   NAV,     SYM,   KC_ENT, KC_LGUI,     MOD_LCTL , KC_SPC , SYM,    _______,_______
+     KC_ESC  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                          KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P ,   KC_BSPC,
+     CTL_TAB , ALT_A ,  CTL_S  ,  GUI_D ,   SFT_F,   KC_G ,                                          KC_H,   SFT_J,  GUI_K,   CTL_L,  ALT_SCLN, KC_QUOTE,
+     KC_LSFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , _______,_______,     FKEYS  , _______,   KC_N,   KC_M ,  KC_COMM, KC_DOT ,KC_SLSH, KC_RSFT,
+                                ADJUST ,   NAV,     SYM,   KC_ENT, KC_LGUI,     MOD_LCTL , KC_SPC,  SYM,    _______,_______
     ),
 
 /*
@@ -125,8 +132,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_SYM] = LAYOUT(
       KC_GRV ,   KC_1 ,   KC_2 ,   KC_3 ,   KC_4 ,   KC_5 ,                                       KC_6 ,   KC_7 ,   KC_8 ,   KC_9 ,   KC_0 , KC_EQL ,
-     _______ , KC_EXLM,  KC_AT , KC_HASH,  KC_DLR, KC_PERC,                                     KC_CIRC, KC_LPRN, KC_RPRN, KC_LPRN, KC_RPRN, KC_BSLS,
-     _______ , KC_BSLS, KC_COLN, KC_SCLN, KC_MINS, KC_LBRC, KC_LCBR, _______, _______, KC_RCBR, KC_RBRC, KC_UNDS, KC_COMM,  KC_DOT, KC_SLSH, KC_QUES,
+     _______ , KC_EXLM,  KC_AT , KC_HASH,  KC_DLR, KC_PERC,                                     KC_UNDS, KC_LPRN, KC_RPRN, KC_LPRN, KC_RPRN, KC_BSLS,
+     _______ , KC_BSLS, KC_COLN, KC_SCLN, KC_MINS, KC_LBRC, KC_LCBR, _______, _______, KC_RCBR, KC_RBRC, KC_LCBR, KC_RCBR,  KC_DOT, KC_SLSH, KC_QUES,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
@@ -166,7 +173,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_ADJUST] = LAYOUT(
-      _______, _______, _______, QWERTY , _______, _______,                                    _______, _______, _______, _______,  _______, _______,
+      _______, _______, _______, _______ , _______, _______,                                    _______, _______, _______, _______,  _______, _______,
       _______, _______, _______, _______ , _______, _______,                                    RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI,  RGB_MOD, _______,
       _______, _______, _______, _______, _______, _______,_______, _______, _______, _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD, _______,
                                  _______, _______, _______,_______, _______, _______, _______, _______, _______, _______
