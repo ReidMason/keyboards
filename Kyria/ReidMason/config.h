@@ -35,11 +35,13 @@
 #    endif
 #endif
 
+#define ENCODER_RESOLUTION 2
+
 // Only turn on the microcontroller leds if capslock is on
 #define LED_CAPS_LOCK_PIN 24
 #define LED_PIN_ON_STATE 0
 
 // Configure the global tapping term (default: 200ms)
-#define TAPPING_TERM 200
+#define TAPPING_TERM 100
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define QUICK_TAP_TERM 0
