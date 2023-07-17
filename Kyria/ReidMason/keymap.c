@@ -66,12 +66,13 @@ enum my_keycodes {
 #define ALT_ENT  MT(MOD_LALT, KC_ENT)
 
 #define SFT_TAB LSFT_T(KC_TAB)
+#define SFT_QOT RSFT_T(KC_QUOTE)
 
 #define KC_CAPP LGUI(LSFT(KC_4))        // Capture portion of screen
 #define KC_CPYP LGUI(LSFT(LCTL(KC_4)))  // Copy portion of screen
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
+  switch(keycode) {
     // Custom hash key for windows and macos
     case HASH:
       if (record->event.pressed) {
@@ -104,20 +105,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//    ┌─────────┬───┬───┬────────┬─────┬─────┐                                   ┌─────┬─────┬─────┬───┬───┬──────┐
-//    │   esc   │ q │ w │   e    │  r  │  t  │                                   │  y  │  u  │  i  │ o │ p │ bspc │
-//    ├─────────┼───┼───┼────────┼─────┼─────┤                                   ├─────┼─────┼─────┼───┼───┼──────┤
-//    │ SFT_TAB │ a │ s │   d    │  f  │  g  │                                   │  h  │  j  │  k  │ l │ ; │  '   │
-//    ├─────────┼───┼───┼────────┼─────┼─────┼──────┬──────┐       ┌───────┬─────┼─────┼─────┼─────┼───┼───┼──────┤
-//    │  lctl   │ z │ x │   c    │  v  │  b  │ cPYP │ HASH │       │ FKEYS │     │  n  │  m  │  ,  │ . │ / │ rsft │
-//    └─────────┴───┴───┼────────┼─────┼─────┼──────┼──────┤       ├───────┼─────┼─────┼─────┼─────┼───┴───┴──────┘
-//                      │ ADJUST │ NAV │ SYM │ ent  │ lgui │       │ rgui  │ spc │ NAV │     │     │               
-//                      └────────┴─────┴─────┴──────┴──────┘       └───────┴─────┴─────┴─────┴─────┘               
+//    ┌─────────┬───┬───┬──────┬─────┬──────┐                                     ┌─────┬─────┬─────┬───┬───┬─────────┐
+//    │   esc   │ q │ w │  e   │  r  │  t   │                                     │  y  │  u  │  i  │ o │ p │  bspc   │
+//    ├─────────┼───┼───┼──────┼─────┼──────┤                                     ├─────┼─────┼─────┼───┼───┼─────────┤
+//    │ SFT_TAB │ a │ s │  d   │  f  │  g   │                                     │  h  │  j  │  k  │ l │ ; │ SFT_QOT │
+//    ├─────────┼───┼───┼──────┼─────┼──────┼──────┬────────┐       ┌───────┬─────┼─────┼─────┼─────┼───┼───┼─────────┤
+//    │  lctl   │ z │ x │  c   │  v  │  b   │ cPYP │ ADJUST │       │ FKEYS │     │  n  │  m  │  ,  │ . │ / │  rctl   │
+//    └─────────┴───┴───┼──────┼─────┼──────┼──────┼────────┤       ├───────┼─────┼─────┼─────┼─────┼───┴───┴─────────┘
+//                      │ lalt │ NAV │ lgui │ ent  │  SYM   │       │  SYM  │ spc │ NAV │     │     │                  
+//                      └──────┴─────┴──────┴──────┴────────┘       └───────┴─────┴─────┴─────┴─────┘                  
 [_QWERTY] = LAYOUT(
-  KC_ESC  , KC_Q , KC_W , KC_E   , KC_R , KC_T ,                                                 KC_Y , KC_U    , KC_I    , KC_O   , KC_P    , KC_BSPC ,
-  SFT_TAB , KC_A , KC_S , KC_D   , KC_F , KC_G ,                                                 KC_H , KC_J    , KC_K    , KC_L   , KC_SCLN , KC_QUOTE,
-  KC_LCTL , KC_Z , KC_X , KC_C   , KC_V , KC_B , KC_CPYP , HASH    ,         FKEYS   , _______ , KC_N , KC_M    , KC_COMM , KC_DOT , KC_SLSH , KC_RSFT ,
-                          ADJUST , NAV  , SYM  , KC_ENT  , KC_LGUI ,         KC_RGUI , KC_SPC  , NAV  , _______ , _______                              
+  KC_ESC  , KC_Q , KC_W , KC_E    , KC_R , KC_T    ,                                              KC_Y , KC_U    , KC_I    , KC_O   , KC_P    , KC_BSPC,
+  SFT_TAB , KC_A , KC_S , KC_D    , KC_F , KC_G    ,                                              KC_H , KC_J    , KC_K    , KC_L   , KC_SCLN , SFT_QOT,
+  KC_LCTL , KC_Z , KC_X , KC_C    , KC_V , KC_B    , KC_CPYP , ADJUST ,         FKEYS , _______ , KC_N , KC_M    , KC_COMM , KC_DOT , KC_SLSH , KC_RCTL,
+                          KC_LALT , NAV  , KC_LGUI , KC_ENT  , SYM    ,         SYM   , KC_SPC  , NAV  , _______ , _______                             
 ),
 
 //    ┌─────┬──────┬──────┬──────┬──────┬─────┐                                ┌──────┬──────┬─────┬──────┬─────┬─────┐
@@ -141,14 +142,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    ├─────┼───┼───┼──────┼─────┼─────┤                               ├─────┼─────┼─────┼─────┼─────┼─────┤
 //    │     │ ! │ @ │ HASH │  $  │  -  │                               │  _  │  (  │  )  │  [  │  ]  │  \  │
 //    ├─────┼───┼───┼──────┼─────┼─────┼─────┬─────┐       ┌─────┬─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │ \ │ * │      │  %  │  +  │     │     │       │     │     │     │  {  │  }  │     │     │     │
+//    │     │ \ │ * │  &   │  %  │  +  │     │     │       │     │     │     │  {  │  }  │     │     │     │
 //    └─────┴───┴───┼──────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────┼─────┼─────┼─────┴─────┴─────┘
 //                  │      │     │     │     │     │       │     │     │     │     │     │                  
 //                  └──────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────┴─────┴─────┘                  
 [_SYM] = LAYOUT(
   KC_GRV  , KC_1    , KC_2    , KC_3    , KC_4    , KC_5    ,                                                 KC_6    , KC_7    , KC_8    , KC_9    , KC_0    , KC_EQL ,
   _______ , KC_EXLM , KC_AT   , HASH    , KC_DLR  , KC_MINS ,                                                 KC_UNDS , KC_LPRN , KC_RPRN , KC_LBRC , KC_RBRC , KC_BSLS,
-  _______ , KC_BSLS , KC_ASTR , _______ , KC_PERC , KC_PLUS , _______ , _______ ,         _______ , _______ , _______ , KC_LCBR , KC_RCBR , _______ , _______ , _______,
+  _______ , KC_BSLS , KC_ASTR , KC_AMPR , KC_PERC , KC_PLUS , _______ , _______ ,         _______ , _______ , _______ , KC_LCBR , KC_RCBR , _______ , _______ , _______,
                                 _______ , _______ , _______ , _______ , _______ ,         _______ , _______ , _______ , _______ , _______                              
 ),
 
